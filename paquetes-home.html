@@ -385,6 +385,31 @@
                 dots.forEach(function(dot, i) {
                     dot.addEventListener('click', function() { current = i; mostrar(current); });
                 });
+
+                /* ── Soporte swipe táctil ── */
+                var viewport = carrusel.querySelector('.carrusel-viewport');
+                var touchStartX = 0;
+                var touchStartY = 0;
+                var SWIPE_MIN = 45; // px mínimos para contar como swipe
+
+                viewport.addEventListener('touchstart', function(e) {
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                }, { passive: true });
+
+                viewport.addEventListener('touchend', function(e) {
+                    var dx = touchStartX - e.changedTouches[0].clientX;
+                    var dy = touchStartY - e.changedTouches[0].clientY;
+                    // Solo activar si el movimiento horizontal supera al vertical
+                    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_MIN) {
+                        if (dx > 0) {
+                            current = (current + 1) % slides.length;          // swipe izquierda → siguiente
+                        } else {
+                            current = (current - 1 + slides.length) % slides.length; // swipe derecha → anterior
+                        }
+                        mostrar(current);
+                    }
+                }, { passive: true });
             });
         });
     </script>

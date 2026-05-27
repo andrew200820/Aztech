@@ -435,9 +435,13 @@ html.page-index body { height: 100%; overflow: hidden; }
 .carrusel-btn:hover { background: var(--amarillo-aztech); border-color: var(--amarillo-aztech); color: var(--azul-aztech); }
 
 @media (max-width: 768px) {
-    .paquete-fila { flex-direction: column; align-items: flex-start; }
-    .paquete-categoria { width: 100%; }
+    .paquetes-servicios { padding: 50px 4%; gap: 40px; }
+    .paquete-fila { flex-direction: column; align-items: center; gap: 16px; }
+    .paquete-categoria { width: 100%; text-align: center; }
     .carrusel-wrap { width: 100%; }
+    /* Altura auto en tablet para que el contenido no se corte */
+    .slide-bg, .slide-bg-plano { min-height: 360px; height: auto; }
+    .slide-content { padding: 24px 20px; }
 }
 
 /* =========================================
@@ -654,14 +658,29 @@ html.page-index body { height: 100%; overflow: hidden; }
     .inferior-text h3 { font-size: 1.7rem; }
     .inferior-text p { font-size: 1rem; }
 
-    /* Paquetes Home — carousel */
-    .slide-bg, .slide-bg-plano { height: 280px; }
-    .slide-content h3 { font-size: 1.3rem; }
-    .slide-content .slide-tagline { font-size: 0.82rem; }
-    .slide-content .slide-desc { font-size: 0.82rem; }
-    .carrusel-btn { width: 32px; height: 32px; font-size: 1.1rem; }
-    .paquete-fila { gap: 20px; padding: 30px 4%; }
-    .paquete-categoria h2 { font-size: 1.6rem !important; }
+    /* Paquetes Home — carousel móvil */
+    .paquetes-servicios { padding: 32px 4%; gap: 28px; }
+    .paquete-fila { gap: 12px; background: var(--gris-fondo); border-radius: 14px; padding: 24px 4%; }
+    .paquete-categoria { padding: 0 0 4px; }
+    .paquete-categoria h2 { font-size: 1.4rem !important; }
+    .paquete-categoria span { font-size: 0.9rem; }
+    .paquete-categoria-linea { margin: 8px auto; }
+    /* Altura auto: el contenido dicta la altura, no al revés */
+    .slide-bg, .slide-bg-plano { min-height: 0; height: auto; }
+    .slide-content { padding: 20px 16px 24px; }
+    .slide-content h3 { font-size: 1.2rem; margin-bottom: 4px; }
+    .slide-tagline { font-size: 0.82rem; margin-bottom: 14px; }
+    .incluye-label { font-size: 0.95rem; margin-bottom: 8px; }
+    .slide-lista { margin-bottom: 12px; }
+    .slide-lista li { font-size: 0.88rem; line-height: 1.5; margin-bottom: 4px; }
+    .slide-desc { font-size: 0.82rem; margin-bottom: 12px; }
+    .precio-label { font-size: 0.9rem; margin-bottom: 2px; }
+    .precio-valor { font-size: 0.85rem; }
+    .slide-personaliza { padding: 28px 20px; gap: 14px; }
+    .slide-personaliza p { font-size: 1.2rem; }
+    .carrusel-btn { width: 34px; height: 34px; font-size: 1.2rem; }
+    .carrusel-dots { margin-top: 8px; }
+    .carrusel-dot { width: 9px; height: 9px; }
 
     /* FAQ — ajustes de tamaño para móvil pequeño */
     .faq-seccion { padding: 40px 4% 60px; }
