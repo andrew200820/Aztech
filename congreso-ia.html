@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congreso IA y Automatización en la Práctica | Aztech Enterprise</title>
+    <meta name="description" content="Congreso Inmersivo de IA y Automatización facilitado por Aztech Enterprise. 80 horas académicas, 9 días, modalidad virtual. Inversión: $50 USD.">
+    <link rel="icon" type="image/jpeg" href="assets/images/solo-icono.jpg">
+    <link rel="apple-touch-icon" href="assets/images/solo-icono.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* =============================================
+           CONGRESO IA — ESTILOS DE PÁGINA
+           ============================================= */
+
+        /* Hero */
+        .congreso-hero {
+            background-color: var(--azul-aztech);
+            padding: 90px 5% 75px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .congreso-hero::before {
+            content: 'IA';
+            position: absolute;
+            font-size: 22rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.03);
+            top: -60px;
+            left: -30px;
+            line-height: 1;
+            pointer-events: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .congreso-hero-content { position: relative; z-index: 2; max-width: 820px; }
+
+        .congreso-etiqueta {
+            display: inline-block;
+            background-color: var(--amarillo-aztech);
+            color: var(--azul-aztech);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            padding: 7px 22px;
+            border-radius: 100px;
+            margin-bottom: 26px;
+        }
+
+        .congreso-hero h1 {
+            color: var(--blanco);
+            font-size: clamp(2.2rem, 5.5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.12;
+            margin-bottom: 14px;
+        }
+
+        .congreso-hero h1 em {
+            color: var(--amarillo-aztech);
+            font-style: normal;
+        }
+
+        .congreso-facilitado {
+            color: rgba(255,255,255,0.65);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 44px;
+        }
+
+        .congreso-stats {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+
+        .stat-item {
+            background-color: rgba(255,255,255,0.09);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 12px;
+            padding: 16px 24px;
+            min-width: 120px;
+        }
+
+        .stat-valor {
+            color: var(--amarillo-aztech);
+            font-size: 1.7rem;
+            font-weight: 700;
+            line-height: 1;
+            display: block;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.78rem;
+            margin-top: 5px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .btn-hero-inscribirse {
+            background-color: var(--amarillo-aztech);
+            color: var(--azul-aztech);
+            padding: 17px 48px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-hero-inscribirse:hover {
+            background-color: var(--blanco);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+        }
+
+        .congreso-barra { width: 100%; height: 6px; background-color: var(--amarillo-aztech); }
+
+        /* ── Dinámica ── */
+        .congreso-dinamica {
+            padding: 80px 5%;
+            background-color: var(--gris-fondo);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .congreso-dinamica h2 {
+            color: var(--azul-aztech);
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .congreso-dinamica > p {
+            color: var(--gris-home);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            max-width: 740px;
+            margin-bottom: 52px;
+        }
+
+        .dinamica-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .dinamica-card {
+            background: var(--blanco);
+            border-radius: 14px;
+            padding: 30px 22px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+            border-top: 4px solid var(--azul-aztech);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dinamica-card:hover { transform: translateY(-6px); box-shadow: 0 12px 35px rgba(0,0,0,0.12); }
+        .dinamica-card.highlight { border-top-color: var(--amarillo-aztech); }
+
+        .dinamica-icono { font-size: 2.4rem; margin-bottom: 14px; display: block; }
+
+        .dinamica-card h4 {
+            color: var(--azul-aztech);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        .dinamica-card p {
+            color: var(--texto);
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.35;
+        }
+
+        .dinamica-card p small {
+            display: block;
+            font-weight: 400;
+            font-size: 0.82rem;
+            color: var(--gris-home);
+            margin-top: 4px;
+        }
+
+        /* ── Programa ── */
+        .congreso-programa {
+            padding: 80px 5%;
+            background-color: var(--blanco);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .programa-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .programa-header h2 {
+            color: var(--azul-aztech);
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .programa-header p { color: var(--gris-home); font-size: 1rem; line-height: 1.6; }
+
+        .fases-contenedor {
+            display: flex;
+            flex-direction: column;
+            gap: 55px;
+            max-width: 1020px;
+            width: 100%;
+        }
+
+        /* Título de fase */
+        .fase-titulo-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .fase-pill {
+            background-color: var(--azul-aztech);
+            color: var(--blanco);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 7px 18px;
+            border-radius: 100px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .fase-pill.f2 { background-color: var(--amarillo-aztech); color: var(--azul-aztech); }
+        .fase-pill.f3 { background-color: #1a6b45; color: var(--blanco); }
+
+        .fase-titulo-row h3 {
+            color: var(--azul-aztech);
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .fase-linea { flex: 1; height: 2px; background-color: var(--gris-caja); }
+
+        /* Cards de días */
+        .dias-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .dia-card {
+            background-color: var(--gris-fondo);
+            border-radius: 12px;
+            overflow: hidden;
+            border-left: 4px solid var(--azul-aztech);
+        }
+
+        .dia-card.f2-color { border-left-color: var(--amarillo-aztech); }
+        .dia-card.f3-color { border-left-color: #1a6b45; }
+        .dia-card.col-span2 { grid-column: span 2; }
+
+        .dia-badge {
+            background-color: var(--azul-aztech);
+            color: var(--blanco);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 7px 14px;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        .dia-card.f2-color .dia-badge { background-color: var(--amarillo-aztech); color: var(--azul-aztech); }
+        .dia-card.f3-color .dia-badge { background-color: #1a6b45; }
+
+        .dia-body { padding: 16px 18px; }
+
+        .dia-tema-titulo {
+            color: var(--azul-aztech);
+            font-weight: 700;
+            font-size: 0.92rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .dia-fila {
+            display: flex;
+            gap: 8px;
+            font-size: 0.83rem;
+            color: var(--texto);
+            line-height: 1.5;
+            margin-bottom: 7px;
+        }
+
+        .dia-fila:last-child { margin-bottom: 0; }
+
+        .dia-fila-tag {
+            font-weight: 700;
+            color: var(--azul-aztech);
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-size: 0.78rem;
+            padding-top: 1px;
+        }
+
+        .dia-fila-tag.live { color: #c0392b; }
+
+        .nota-horario {
+            background-color: var(--azul-aztech);
+            color: var(--blanco);
+            border-radius: 10px;
+            padding: 12px 22px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .frase-cierre {
+            border-left: 4px solid var(--amarillo-aztech);
+            background-color: var(--gris-fondo);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 24px;
+            font-style: italic;
+            color: var(--azul-aztech);
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-top: 16px;
+        }
+
+        /* ── Inscripción ── */
+        .congreso-inscripcion {
+            background-color: var(--azul-aztech);
+            padding: 90px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .inscripcion-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1020px;
+            width: 100%;
+            align-items: start;
+        }
+
+        .inscripcion-info h2 {
+            color: var(--blanco);
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            font-weight: 700;
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+
+        .inscripcion-info > p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .inscripcion-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+        .inscripcion-bullets li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.93rem;
+            line-height: 1.45;
+        }
+
+        .check-circle {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            background-color: var(--amarillo-aztech);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--azul-aztech);
+            margin-top: 1px;
+        }
+
+        .inscripcion-precio {
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .inscripcion-precio span {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.82rem;
+            display: block;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .inscripcion-precio strong {
+            color: var(--amarillo-aztech);
+            font-size: 2.8rem;
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+        }
+
+        .inscripcion-precio em {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.82rem;
+            font-style: normal;
+        }
+
+        /* Formulario */
+        .form-card {
+            background: var(--blanco);
+            border-radius: 18px;
+            padding: 40px 36px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .form-card h3 {
+            color: var(--azul-aztech);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .congreso-form { display: flex; flex-direction: column; gap: 16px; }
+
+        .congreso-form .fg { display: flex; flex-direction: column; gap: 6px; }
+
+        .congreso-form label {
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--azul-aztech);
+        }
+
+        .congreso-form input,
+        .congreso-form select {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid #dde2ee;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.92rem;
+            color: #333;
+            background: var(--blanco);
+            transition: border-color 0.25s;
+            outline: none;
+        }
+
+        .congreso-form input:focus,
+        .congreso-form select:focus { border-color: var(--azul-aztech); }
+
+        .congreso-form select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 20px;
+            cursor: pointer;
+        }
+
+        .form-fila-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        .btn-form-enviar {
+            background-color: var(--azul-aztech);
+            color: var(--blanco);
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .btn-form-enviar:hover {
+            background-color: var(--amarillo-aztech);
+            color: var(--azul-aztech);
+            transform: translateY(-2px);
+        }
+
+        .form-privacidad {
+            font-size: 0.74rem;
+            color: #aaa;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* ── CTA WhatsApp ── */
+        .congreso-cta-wa {
+            background-color: var(--amarillo-aztech);
+            padding: 44px 5%;
+            text-align: center;
+        }
+
+        .congreso-cta-wa p {
+            color: var(--azul-aztech);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .btn-wa {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: var(--blanco);
+            padding: 13px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn-wa:hover { background-color: #128C7E; transform: translateY(-2px); }
+        .btn-wa svg { width: 22px; height: 22px; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .dinamica-grid { grid-template-columns: repeat(2, 1fr); }
+            .inscripcion-inner { grid-template-columns: 1fr; gap: 40px; }
+            .dias-grid { grid-template-columns: 1fr 1fr; }
+            .dia-card.col-span2 { grid-column: span 2; }
+        }
+
+        @media (max-width: 600px) {
+            .congreso-hero { padding: 60px 5% 50px; }
+            .congreso-hero::before { font-size: 9rem; }
+            .congreso-stats { gap: 10px; }
+            .stat-item { padding: 12px 16px; min-width: 100px; }
+            .stat-valor { font-size: 1.35rem; }
+            .dinamica-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .dinamica-card { padding: 22px 16px; }
+            .congreso-programa { padding: 50px 4%; }
+            .congreso-dinamica { padding: 50px 4%; }
+            .congreso-inscripcion { padding: 50px 4%; }
+            .form-card { padding: 28px 20px; }
+            .form-fila-2 { grid-template-columns: 1fr; }
+            .dias-grid { grid-template-columns: 1fr; }
+            .dia-card.col-span2 { grid-column: span 1; }
+            .fase-titulo-row h3 { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html"><img src="assets/images/logo-principal.jpg" alt="Aztech" class="nav-logo-img"></a>
+        <nav class="nav-links">
+            <a href="enterprise.html">Nosotros</a>
+            <div class="dropdown">
+                <a href="home.html">AZ-HOME ▾</a>
+                <div class="dropdown-content">
+                    <a href="home.html#internet">Internet Impecable</a>
+                    <a href="home.html#blindaje">Blindaje Familiar</a>
+                    <a href="home.html#asesoria">Asesoría Tecnológica</a>
+                    <a href="home.html#confort">Confort y Domótica</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="business.html">AZ-BUSINESS ▾</a>
+                <div class="dropdown-content">
+                    <a href="business.html#tech-partner">Tech Partner</a>
+                    <a href="business.html#fractional-cto">Fractional CTO</a>
+                    <a href="business.html#gestion-agil">Gestión y Transformación Ágil</a>
+                    <a href="business.html#infraestructura">Infraestructura Híbrida y FinOps</a>
+                    <a href="business.html#equipo-it">Estructuración del equipo IT</a>
+                    <a href="business.html#ai-readiness">AI Readiness Assessment</a>
+                </div>
+            </div>
+            <a href="congreso-ia.html" class="active">Congreso IA</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ══ HERO ══════════════════════════════════════════ -->
+        <section class="congreso-hero">
+            <div class="congreso-hero-content">
+                <span class="congreso-etiqueta">Congreso Inmersivo</span>
+                <h1><em>IA</em> y Automatización<br>en la Práctica</h1>
+                <p class="congreso-facilitado">Facilitado por Aztech Enterprise · Quito, Ecuador</p>
+                <div class="congreso-stats">
+                    <div class="stat-item">
+                        <span class="stat-valor">80h</span>
+                        <span class="stat-label">Académicas</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-valor">9</span>
+                        <span class="stat-label">Días</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-valor">$50</span>
+                        <span class="stat-label">USD</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-valor">🌐</span>
+                        <span class="stat-label">Virtual</span>
+                    </div>
+                </div>
+                <a href="#inscripcion" class="btn-hero-inscribirse">Reservar mi cupo →</a>
+            </div>
+        </section>
+        <div class="congreso-barra"></div>
+
+        <!-- ══ DINÁMICA ═══════════════════════════════════════ -->
+        <section class="congreso-dinamica">
+            <h2>Dinámica del Congreso y Certificación</h2>
+            <p>Este congreso inmersivo está diseñado para <strong>transferir capacidades de arquitectura tecnológica</strong> directamente a los profesionales. Combina magistrales técnicas nocturnas con un robusto componente de autoestudio y un bloque de desarrollo offline.</p>
+            <div class="dinamica-grid">
+                <div class="dinamica-card">
+                    <span class="dinamica-icono">🧠</span>
+                    <h4>Metodología</h4>
+                    <p>Aprendizaje Invertido
+                        <small>y Hackathon Práctico</small>
+                    </p>
+                </div>
+                <div class="dinamica-card">
+                    <span class="dinamica-icono">💻</span>
+                    <h4>Modalidad</h4>
+                    <p>100% Virtual
+                        <small>Google Meet · n8n · Colab</small>
+                    </p>
+                </div>
+                <div class="dinamica-card highlight">
+                    <span class="dinamica-icono">💰</span>
+                    <h4>Inversión única</h4>
+                    <p>$50 USD
+                        <small>Pago único todo incluido</small>
+                    </p>
+                </div>
+                <div class="dinamica-card">
+                    <span class="dinamica-icono">🎓</span>
+                    <h4>Certificación</h4>
+                    <p>Aval corporativo
+                        <small>Aztech Enterprise</small>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ PROGRAMA ═══════════════════════════════════════ -->
+        <section class="congreso-programa">
+            <div class="programa-header">
+                <h2>Programa Académico</h2>
+                <p>Del 1 al 9 de junio · Sesiones en vivo de 19:00 a 22:30 (hora Ecuador) por Google Meet</p>
+            </div>
+
+            <div class="fases-contenedor">
+
+                <!-- FASE 1 -->
+                <div>
+                    <div class="fase-titulo-row">
+                        <span class="fase-pill">Fase 1</span>
+                        <h3>Inmersión Técnica — Sincrónico</h3>
+                        <div class="fase-linea"></div>
+                    </div>
+                    <div class="dias-grid">
+
+                        <div class="dia-card">
+                            <span class="dia-badge">Lunes 01 de Junio</span>
+                            <div class="dia-body">
+                                <p class="dia-tema-titulo">Fundamentos y Economía de la IA</p>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag">Día:</span>
+                                    <span>Lectura "Attention Is All You Need" · Laboratorio de modelado económico: C<sub>total</sub> = (T<sub>in</sub> × P<sub>in</sub>) + (T<sub>out</sub> × P<sub>out</sub>)</span>
+                                </div>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag live">19h00:</span>
+                                    <span>Anatomía de tokens, viabilidad económica de proyectos y defensa de casos de negocio.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dia-card">
+                            <span class="dia-badge">Martes 02 de Junio</span>
+                            <div class="dia-body">
+                                <p class="dia-tema-titulo">Automatización Visual y Orquestación</p>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag">Día:</span>
+                                    <span>Estudio de Webhooks y APIs · Construcción de canalización en n8n.</span>
+                                </div>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag live">19h00:</span>
+                                    <span>Ramificaciones lógicas, interconexión de sistemas y debugging en tiempo real.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dia-card">
+                            <span class="dia-badge">Miércoles 03 de Junio</span>
+                            <div class="dia-body">
+                                <p class="dia-tema-titulo">Ecosistemas RAG e Indexación</p>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag">Día:</span>
+                                    <span>Análisis de bases vectoriales · Ejecución de cuadernos en Google Colab con datos CSV.</span>
+                                </div>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag live">19h00:</span>
+                                    <span>El pipeline RAG, mitigación de alucinaciones y revisión de búsquedas semánticas.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="nota-horario">📅 Trabajo asincrónico diurno + sesiones en vivo 19:00 – 22:30 por Google Meet</div>
+                </div>
+
+                <!-- FASE 2 -->
+                <div>
+                    <div class="fase-titulo-row">
+                        <span class="fase-pill f2">Fase 2</span>
+                        <h3>Hackathon de Desarrollo y Mentoría</h3>
+                        <div class="fase-linea"></div>
+                    </div>
+                    <div class="dias-grid">
+
+                        <div class="dia-card f2-color col-span2">
+                            <span class="dia-badge">Jueves 04 · Viernes 05 · Domingo 07 de Junio</span>
+                            <div class="dia-body">
+                                <p class="dia-tema-titulo">Desarrollo Asincrónico <em style="color:var(--amarillo-aztech);font-style:normal;font-size:0.8rem;">· sin clases en vivo</em></p>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag" style="color:var(--amarillo-aztech);">Hito 1:</span>
+                                    <span><strong>Agentes Autónomos e Infraestructura</strong> — Diseño multiagente, fundamentos de Docker y DevSecOps.</span>
+                                </div>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag" style="color:var(--amarillo-aztech);">Hito 2:</span>
+                                    <span><strong>Desarrollo del Proyecto Final</strong> — Integración técnica de n8n, RAG y llamadas a APIs.</span>
+                                </div>
+                                <p style="font-size:0.8rem;color:var(--gris-home);margin-top:8px;">Los alumnos gestionan su tiempo al 100% para construir la solución a sustentar.</p>
+                            </div>
+                        </div>
+
+                        <div class="dia-card f2-color">
+                            <span class="dia-badge">Sábado 06 de Junio</span>
+                            <div class="dia-body">
+                                <p class="dia-tema-titulo">Seguimiento de Proyectos — Mesa de Ayuda</p>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag live">En vivo:</span>
+                                    <span>Apertura de Sala (2 horas) · Conversatorio en Google Meet para revisar avances, validar arquitecturas y resolver bloqueos técnicos.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="nota-horario" style="background-color:var(--amarillo-aztech);color:var(--azul-aztech);">🚀 Periodo de investigación y construcción del proyecto final con seguimiento estratégico</div>
+                </div>
+
+                <!-- FASE 3 -->
+                <div>
+                    <div class="fase-titulo-row">
+                        <span class="fase-pill f3">Fase 3</span>
+                        <h3>Consolidación y Cierre</h3>
+                        <div class="fase-linea"></div>
+                    </div>
+                    <div class="dias-grid">
+
+                        <div class="dia-card f3-color">
+                            <span class="dia-badge">Lunes 08 de Junio</span>
+                            <div class="dia-body">
+                                <p class="dia-tema-titulo">Mentoría y Optimización de Arquitecturas</p>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag">Día:</span>
+                                    <span>Ajustes finales de código y preparación del pitch de presentación.</span>
+                                </div>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag live">19h00:</span>
+                                    <span>Revisión del material y mesa de ayuda técnica intensiva para desbloquear componentes complejos antes de la sustentación.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dia-card f3-color">
+                            <span class="dia-badge">Martes 09 de Junio</span>
+                            <div class="dia-body">
+                                <p class="dia-tema-titulo">Tribunal de Soluciones y Clausura</p>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag live">19h00:</span>
+                                    <span>Jornada de sustentación técnica. Cada participante defiende su arquitectura en producción y demuestra su funcionamiento.</span>
+                                </div>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag">Cierre:</span>
+                                    <span>Retroalimentación de la industria y directrices para emisión de certificados Aztech.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dia-card f3-color">
+                            <span class="dia-badge">Al finalizar</span>
+                            <div class="dia-body">
+                                <p class="dia-tema-titulo">Certificación Aztech</p>
+                                <div class="dia-fila">
+                                    <span class="dia-fila-tag">🎓</span>
+                                    <span>Certificado con <strong>aval corporativo de Aztech Enterprise</strong> al sustentar satisfactoriamente el proyecto final.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="frase-cierre">"La teoría termina aquí, pero su despliegue apenas comienza."</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══ INSCRIPCIÓN ════════════════════════════════════ -->
+        <section class="congreso-inscripcion" id="inscripcion">
+            <div class="inscripcion-inner">
+
+                <!-- Info izquierda -->
+                <div class="inscripcion-info">
+                    <h2>Reserva tu cupo ahora</h2>
+                    <p>Los cupos son limitados. Completa el formulario y nos contactaremos contigo con las instrucciones de pago y acceso a la plataforma.</p>
+                    <ul class="inscripcion-bullets">
+                        <li><span class="check-circle">✓</span> 80 horas académicas en 9 días intensivos</li>
+                        <li><span class="check-circle">✓</span> Sesiones en vivo con expertos de la industria</li>
+                        <li><span class="check-circle">✓</span> Acceso a materiales y laboratorios prácticos</li>
+                        <li><span class="check-circle">✓</span> Mentoría durante el Hackathon de desarrollo</li>
+                        <li><span class="check-circle">✓</span> Certificado con aval corporativo Aztech</li>
+                    </ul>
+                    <div class="inscripcion-precio">
+                        <span>Inversión única</span>
+                        <strong>$50 USD</strong>
+                        <em>Incluye todo el programa · Pago único</em>
+                    </div>
+                </div>
+
+                <!-- Formulario derecha — Netlify Forms -->
+                <div class="form-card">
+                    <h3>📝 Formulario de inscripción</h3>
+                    <form
+                        name="inscripcion-congreso-ia"
+                        method="POST"
+                        data-netlify="true"
+                        action="/gracias.html"
+                        class="congreso-form"
+                    >
+                        <!-- Campo oculto requerido por Netlify -->
+                        <input type="hidden" name="form-name" value="inscripcion-congreso-ia">
+
+                        <div class="fg">
+                            <label for="nombre">Nombre completo *</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej: María García" required>
+                        </div>
+
+                        <div class="form-fila-2">
+                            <div class="fg">
+                                <label for="email">Correo electrónico *</label>
+                                <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                            </div>
+                            <div class="fg">
+                                <label for="telefono">WhatsApp / Teléfono *</label>
+                                <input type="tel" id="telefono" name="telefono" placeholder="+593 98 000 0000" required>
+                            </div>
+                        </div>
+
+                        <div class="fg">
+                            <label for="pais">País de residencia</label>
+                            <select id="pais" name="pais">
+                                <option value="">Selecciona tu país</option>
+                                <option value="Ecuador">🇪🇨 Ecuador</option>
+                                <option value="Colombia">🇨🇴 Colombia</option>
+                                <option value="Perú">🇵🇪 Perú</option>
+                                <option value="México">🇲🇽 México</option>
+                                <option value="Argentina">🇦🇷 Argentina</option>
+                                <option value="Chile">🇨🇱 Chile</option>
+                                <option value="Otro">🌎 Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="fg">
+                            <label for="como">¿Cómo te enteraste del congreso?</label>
+                            <select id="como" name="como_te_enteraste">
+                                <option value="">Selecciona una opción</option>
+                                <option value="Instagram">Instagram (@aztech_ec)</option>
+                                <option value="TikTok">TikTok (@aztech_ec)</option>
+                                <option value="WhatsApp">WhatsApp / Mensaje directo</option>
+                                <option value="Recomendacion">Recomendación de alguien</option>
+                                <option value="Web">Página web (aztech-ec.com)</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-form-enviar">Reservar mi cupo →</button>
+
+                        <p class="form-privacidad">
+                            Al enviar este formulario aceptas que Aztech Enterprise se contacte contigo con información sobre el congreso. No compartimos tus datos con terceros.
+                        </p>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══ CTA WHATSAPP ═══════════════════════════════════ -->
+        <div class="congreso-cta-wa">
+            <p>¿Tienes preguntas antes de inscribirte? Escríbenos directamente.</p>
+            <a href="https://wa.link/y37yti" class="btn-wa" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Consultar por WhatsApp
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>AZTECH ENTERPRISE</h3>
+                <p>Gestionamos e implementamos tecnología de vanguardia para impulsar el crecimiento de tu empresa y la seguridad de tu hogar.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Soluciones</h4>
+                <ul>
+                    <li><a href="home.html">AZ-Home</a></li>
+                    <li><a href="business.html">AZ-Business</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compañía</h4>
+                <ul>
+                    <li><a href="enterprise.html">Nosotros</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Quito-Ecuador</p>
+                <p><a href="mailto:info@aztech-ec.com">info@aztech-ec.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Aztech Enterprise. Todos los derechos reservados.</div>
+            <div class="footer-links">
+                <a href="#">Términos</a>
+                <a href="politicas-de-privacidad.html">Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.link/y37yti" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+</body>
+</html>
