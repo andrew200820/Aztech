@@ -333,11 +333,11 @@ html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direc
     align-items: center;
     padding: 70px 5% 0 5%;
     gap: 56px;
-    background: linear-gradient(rgba(20, 20, 20, 0.78), rgba(20, 20, 20, 0.78)),
-                url('../images/fondo-enterprise.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background:
+        radial-gradient(ellipse 120% 80% at 75% 10%, rgba(27, 75, 155, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 10% 90%, rgba(240, 179, 66, 0.06) 0%, transparent 50%),
+        linear-gradient(175deg, #101218 0%, #14161e 35%, #111318 70%, #0e1014 100%);
+    background-attachment: fixed;
     width: 100%;
 }
 
