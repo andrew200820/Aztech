@@ -30,6 +30,105 @@
         </nav>
     </header>
 
+    <style>
+        .bio-seccion {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            display: flex;
+            gap: 48px;
+            align-items: flex-start;
+        }
+        .bio-foto-col {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        .bio-foto {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(27,75,155,0.1);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .bio-nombre {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--azul-aztech);
+            text-align: center;
+        }
+        .bio-rol {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.82rem;
+            color: #666;
+            text-align: center;
+        }
+        .bio-contenido {
+            flex: 1;
+        }
+        .bio-contenido h2 {
+            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+            font-weight: 700;
+            color: var(--azul-aztech);
+            margin-bottom: 18px;
+        }
+        .bio-contenido p {
+            font-size: 0.98rem;
+            line-height: 1.75;
+            color: var(--texto);
+            margin-bottom: 14px;
+        }
+        .bio-credenciales {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .bio-tag {
+            background: rgba(27,75,155,0.07);
+            color: var(--azul-aztech);
+            border: 1px solid rgba(27,75,155,0.15);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+        .bio-sectores {
+            margin-top: 24px;
+            padding: 20px 24px;
+            background: var(--gris-fondo);
+            border-radius: 10px;
+            border-left: 4px solid var(--amarillo-aztech);
+        }
+        .bio-sectores-titulo {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--amarillo-aztech);
+            margin-bottom: 8px;
+        }
+        .bio-sectores p {
+            font-size: 0.92rem;
+            color: #555;
+            margin-bottom: 0;
+        }
+        @media (max-width: 768px) {
+            .bio-seccion {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 30px;
+                padding: 40px 5%;
+            }
+            .bio-credenciales { justify-content: center; }
+            .bio-sectores { text-align: left; }
+        }
+    </style>
+
     <main class="enterprise-main">
         <div class="bloque-banner">
             <div class="bloque-left">
@@ -38,9 +137,36 @@
             </div>
             <div class="bloque-divider"></div>
             <div class="bloque-right">
-                <p><strong>AZ TECH ENTERPRISE</strong> es una empresa que se dedica a gestionar la tecnología en maneras multifuncionales para beneficiar a emprendimientos, empresas y hogares.</p>
+                <p><strong>AZ TECH ENTERPRISE</strong> es una firma de consultoría ejecutiva de tecnología. Ayudamos a organizaciones a diagnosticar, dirigir y medir su estrategia IT con resultados concretos.</p>
             </div>
         </div>
+
+        <!-- SEMBLANZA / BIOGRAFÍA -->
+        <section class="bio-seccion">
+            <div class="bio-foto-col">
+                <img src="assets/images/solo-icono.jpg" alt="Andrés Cárdenas" class="bio-foto">
+                <div class="bio-nombre">Andrés Cárdenas</div>
+                <div class="bio-rol">Fundador · Director Ejecutivo</div>
+            </div>
+            <div class="bio-contenido">
+                <h2>Quién está detrás de Aztech</h2>
+                <p>Ejecutivo de tecnología con más de 12 años de experiencia liderando áreas de IT en organizaciones multinacionales y regionales. Mi carrera se ha construido donde la tecnología se cruza con la estrategia de negocio: estructurando departamentos de TI desde cero, ejecutando migraciones cloud a escala, cerrando deuda técnica acumulada y diseñando marcos de gobierno para inteligencia artificial.</p>
+                <p>He trabajado en aseguradoras multinacionales, banca multilateral, agroindustria, floricultura de exportación y fintech. En cada caso, el denominador común ha sido tomar operaciones tecnológicas desordenadas o inexistentes y convertirlas en áreas con gobierno, métricas y dirección estratégica clara.</p>
+                <p>Soy Máster en Sistemas de Información y Big Data por la Escuela Politécnica Nacional. Mi formación complementaria incluye ITIL 4, COBIT 2019, ISO 20000, DevOps, Six Sigma y Scrum.</p>
+                <div class="bio-credenciales">
+                    <span class="bio-tag">IT Strategy</span>
+                    <span class="bio-tag">Digital Transformation</span>
+                    <span class="bio-tag">AI Governance</span>
+                    <span class="bio-tag">Cloud & FinOps</span>
+                    <span class="bio-tag">IT Operations</span>
+                    <span class="bio-tag">Cybersecurity</span>
+                </div>
+                <div class="bio-sectores">
+                    <div class="bio-sectores-titulo">Sectores de experiencia</div>
+                    <p>Seguros · Banca multilateral · Agroindustria · Floricultura · Fintech · Retail</p>
+                </div>
+            </div>
+        </section>
 
         <div class="bloque-banner">
             <div class="bloque-left"><h2 class="bloque-title">Pilares</h2></div>
@@ -166,7 +292,7 @@
             </div>
             <div class="footer-col">
                 <h4>Contacto</h4>
-                <p>Quito-Ecuador</p>
+                <p>Ecuador</p>
                 <p><a href="mailto:info@aztech-ec.com">info@aztech-ec.com</a></p>
             </div>
         </div>
