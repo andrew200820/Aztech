@@ -331,9 +331,9 @@ html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direc
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 80px 5% 0 5%;
-    gap: 80px;
-    background: linear-gradient(rgba(20, 20, 20, 0.75), rgba(20, 20, 20, 0.75)),
+    padding: 70px 5% 0 5%;
+    gap: 56px;
+    background: linear-gradient(rgba(20, 20, 20, 0.78), rgba(20, 20, 20, 0.78)),
                 url('../images/fondo-enterprise.jpg');
     background-size: cover;
     background-position: center;
@@ -346,8 +346,8 @@ html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direc
 .bloque-title { color: var(--blanco); font-size: 3.5rem; font-weight: 700; line-height: 1; }
 .bloque-icon { height: 90px; width: auto; filter: grayscale(100%); transition: 0.5s ease; }
 .bloque-icon:hover { filter: grayscale(0%); transform: scale(1.1); }
-.bloque-divider { width: 4px; height: 120px; background-color: var(--amarillo-aztech); margin: 0 60px; flex-shrink: 0; }
-.bloque-right p { font-size: 1.45rem; line-height: 1.8; color: var(--blanco); text-align: justify; margin: 0; }
+.bloque-divider { width: 3px; height: 90px; background-color: var(--amarillo-aztech); margin: 0 50px; flex-shrink: 0; }
+.bloque-right p { font-size: 1.3rem; line-height: 1.75; color: rgba(255,255,255,0.88); text-align: justify; margin: 0; }
 
 .pilares-display { display: flex; justify-content: space-between; gap: 20px; width: 100%; }
 .pilar-item { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; }
@@ -357,9 +357,9 @@ html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direc
 .pilar-tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 6px; border-style: solid; border-color: var(--amarillo-aztech) transparent transparent transparent; }
 .pilar-icon-wrapper:hover .pilar-main-icon { filter: grayscale(0%); transform: scale(1.05); }
 .pilar-icon-wrapper:hover .pilar-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-.pilar-copy h3 { color: var(--blanco); font-size: 1.5rem; font-weight: 700; text-transform: uppercase; }
+.pilar-copy h3 { color: var(--blanco); font-size: 1.35rem; font-weight: 600; }
 
-.seccion-inferior { display: flex; justify-content: space-between; width: 100%; max-width: 1200px; padding-bottom: 80px; }
+.seccion-inferior { display: flex; justify-content: space-between; width: 100%; max-width: 1200px; padding-bottom: 70px; padding-top: 10px; }
 .inferior-item { position: relative; display: flex; align-items: center; cursor: pointer; }
 .inferior-content { display: flex; align-items: center; gap: 25px; }
 .inferior-icon-container { position: relative; height: 110px; width: 110px; display: flex; justify-content: center; align-items: center; }
@@ -369,8 +369,8 @@ html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direc
 .inferior-item:hover .ecuador-color { opacity: 1; transform: translateX(-50%) scale(1.05); }
 .trayectoria-bw { filter: grayscale(100%); }
 .inferior-item:hover .trayectoria-bw { filter: grayscale(0%); transform: scale(1.05); }
-.inferior-text h3 { color: var(--blanco); font-size: 3rem; font-weight: 700; line-height: 1.1; }
-.inferior-text p { color: var(--blanco); font-size: 1.5rem; font-weight: 300; }
+.inferior-text h3 { color: var(--blanco); font-size: 2.4rem; font-weight: 700; line-height: 1.1; }
+.inferior-text p { color: rgba(255,255,255,0.7); font-size: 1.3rem; font-weight: 300; }
 .inferior-tooltip { position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%) translateY(10px); background-color: rgba(0,0,0,0.9); color: var(--blanco); padding: 10px 15px; border-radius: 8px; font-family: 'Roboto Mono', monospace; font-size: 1rem; width: 250px; text-align: center; opacity: 0; visibility: hidden; transition: 0.3s ease; z-index: 10; }
 .inferior-tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border-width: 6px; border-style: solid; border-color: var(--amarillo-aztech) transparent transparent transparent; }
 .inferior-item:hover .inferior-tooltip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
@@ -639,8 +639,8 @@ html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direc
     .bloque-title { font-size: 2.5rem; }
     .bloque-right p { font-size: 1.2rem; text-align: center; }
     .pilares-display { flex-direction: column; align-items: center; gap: 40px; }
-    .seccion-inferior { flex-direction: column; align-items: center; gap: 40px; padding-bottom: 60px; }
-    .inferior-text h3 { font-size: 2.2rem; }
+    .seccion-inferior { flex-direction: column; align-items: center; gap: 40px; padding-bottom: 50px; }
+    .inferior-text h3 { font-size: 2rem; }
     .timeline-wave-animated { display: none; }
     .timeline-nodes { flex-direction: column; gap: 40px; }
     .timeline-nodes::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 6px; background: var(--gris-timeline); transform: translateX(-50%); z-index: -1; }
@@ -715,8 +715,8 @@ html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direc
     /* Enterprise */
     .bloque-title { font-size: 1.75rem; }
     .bloque-right p { font-size: 1rem; }
-    .inferior-text h3 { font-size: 1.7rem; }
-    .inferior-text p { font-size: 1rem; }
+    .inferior-text h3 { font-size: 1.5rem; }
+    .inferior-text p { font-size: 0.9rem; }
 
     /* Paquetes Home — carousel móvil */
     .paquetes-servicios { padding: 32px 4%; gap: 28px; }

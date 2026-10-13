@@ -31,11 +31,31 @@
     </header>
 
     <style>
-        .bio-seccion {
+        /* ── Bio panel: subtle frame within the dark section ── */
+        .bio-panel {
             max-width: 1200px;
             width: 100%;
+            padding: 44px 48px 40px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            position: relative;
+        }
+        .bio-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 48px;
+            width: 90px;
+            height: 2px;
+            background: var(--amarillo-aztech);
+            border-radius: 1px;
+        }
+
+        /* ── Bio layout ── */
+        .bio-seccion {
             display: flex;
-            gap: 48px;
+            gap: 40px;
             align-items: flex-start;
         }
         .bio-foto-col {
@@ -43,85 +63,111 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
+            padding-top: 4px;
         }
         .bio-foto {
-            width: 180px;
-            height: 180px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid rgba(240,179,66,0.3);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.12);
+            box-shadow: 0 0 0 5px rgba(240,179,66,0.1), 0 6px 20px rgba(0,0,0,0.35);
         }
         .bio-nombre {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--amarillo-aztech);
             text-align: center;
         }
         .bio-rol {
             font-family: 'Roboto Mono', monospace;
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.5);
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.4);
             text-align: center;
+            letter-spacing: 0.3px;
         }
-        .bio-contenido {
-            flex: 1;
-        }
+
+        /* ── Bio content ── */
+        .bio-contenido { flex: 1; }
         .bio-contenido h2 {
-            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+            font-size: clamp(1.25rem, 2vw, 1.6rem);
             font-weight: 700;
             color: var(--blanco);
-            margin-bottom: 18px;
+            margin-bottom: 14px;
+            line-height: 1.3;
         }
         .bio-contenido p {
-            font-size: 0.98rem;
-            line-height: 1.75;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 14px;
+            font-size: 0.94rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.72);
+            margin-bottom: 12px;
         }
+
+        /* ── Credentials tags ── */
         .bio-credenciales {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 7px;
+            margin-top: 18px;
         }
         .bio-tag {
-            background: rgba(240,179,66,0.12);
-            color: var(--amarillo-aztech);
-            border: 1px solid rgba(240,179,66,0.25);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.82rem;
+            background: rgba(240,179,66,0.08);
+            color: rgba(240,179,66,0.8);
+            padding: 4px 11px;
+            border-radius: 4px;
+            font-size: 0.76rem;
             font-weight: 600;
+            letter-spacing: 0.2px;
         }
+
+        /* ── Sectors box ── */
         .bio-sectores {
-            margin-top: 24px;
-            padding: 20px 24px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 10px;
-            border-left: 4px solid var(--amarillo-aztech);
+            margin-top: 20px;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.035);
+            border-radius: 6px;
+            border-left: 3px solid rgba(240,179,66,0.35);
         }
         .bio-sectores-titulo {
-            font-size: 0.8rem;
-            font-weight: 700;
+            font-size: 0.72rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--amarillo-aztech);
-            margin-bottom: 8px;
+            letter-spacing: 0.6px;
+            color: rgba(240,179,66,0.65);
+            margin-bottom: 5px;
         }
         .bio-sectores p {
-            font-size: 0.92rem;
-            color: rgba(255,255,255,0.65);
+            font-size: 0.86rem;
+            color: rgba(255,255,255,0.5);
             margin-bottom: 0;
         }
+
+        /* ── Section separators within dark area ── */
+        .enterprise-sep {
+            width: 100%;
+            max-width: 1200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+            margin: -12px 0;
+        }
+
+        /* ── Responsive ── */
         @media (max-width: 768px) {
+            .bio-panel {
+                padding: 28px 22px 24px;
+            }
+            .bio-panel::before {
+                left: 22px;
+                width: 60px;
+            }
             .bio-seccion {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                gap: 30px;
+                gap: 22px;
             }
+            .bio-foto { width: 120px; height: 120px; }
             .bio-credenciales { justify-content: center; }
             .bio-sectores { text-align: left; }
         }
@@ -140,31 +186,35 @@
         </div>
 
         <!-- SEMBLANZA / BIOGRAFÍA -->
-        <section class="bio-seccion">
-            <div class="bio-foto-col">
-                <img src="assets/images/solo-icono.jpg" alt="Andrés Cárdenas" class="bio-foto">
-                <div class="bio-nombre">Andrés Cárdenas</div>
-                <div class="bio-rol">Fundador · Director Ejecutivo</div>
-            </div>
-            <div class="bio-contenido">
-                <h2>Quién está detrás de Aztech</h2>
-                <p>Ejecutivo de tecnología con más de 12 años de experiencia liderando áreas de IT en organizaciones multinacionales y regionales. Mi carrera se ha construido donde la tecnología se cruza con la estrategia de negocio: estructurando departamentos de TI desde cero, ejecutando migraciones cloud a escala, cerrando deuda técnica acumulada y diseñando marcos de gobierno para inteligencia artificial.</p>
-                <p>He trabajado en aseguradoras multinacionales, banca multilateral, agroindustria, floricultura de exportación y fintech. En cada caso, el denominador común ha sido tomar operaciones tecnológicas desordenadas o inexistentes y convertirlas en áreas con gobierno, métricas y dirección estratégica clara.</p>
-                <p>Soy Máster en Sistemas de Información y Big Data por la Escuela Politécnica Nacional. Mi formación complementaria incluye ITIL 4, COBIT 2019, ISO 20000, DevOps, Six Sigma y Scrum.</p>
-                <div class="bio-credenciales">
-                    <span class="bio-tag">IT Strategy</span>
-                    <span class="bio-tag">Digital Transformation</span>
-                    <span class="bio-tag">AI Governance</span>
-                    <span class="bio-tag">Cloud & FinOps</span>
-                    <span class="bio-tag">IT Operations</span>
-                    <span class="bio-tag">Cybersecurity</span>
+        <section class="bio-panel">
+            <div class="bio-seccion">
+                <div class="bio-foto-col">
+                    <img src="assets/images/solo-icono.jpg" alt="Andrés Cárdenas" class="bio-foto">
+                    <div class="bio-nombre">Andrés Cárdenas</div>
+                    <div class="bio-rol">Fundador · Director Ejecutivo</div>
                 </div>
-                <div class="bio-sectores">
-                    <div class="bio-sectores-titulo">Sectores de experiencia</div>
-                    <p>Seguros · Banca multilateral · Agroindustria · Floricultura · Fintech · Retail</p>
+                <div class="bio-contenido">
+                    <h2>Quién está detrás de Aztech</h2>
+                    <p>Ejecutivo de tecnología con más de 12 años de experiencia liderando áreas de IT en organizaciones multinacionales y regionales. Mi carrera se ha construido donde la tecnología se cruza con la estrategia de negocio: estructurando departamentos de TI desde cero, ejecutando migraciones cloud a escala, cerrando deuda técnica acumulada y diseñando marcos de gobierno para inteligencia artificial.</p>
+                    <p>He trabajado en aseguradoras multinacionales, banca multilateral, agroindustria, floricultura de exportación y fintech. En cada caso, el denominador común ha sido tomar operaciones tecnológicas desordenadas o inexistentes y convertirlas en áreas con gobierno, métricas y dirección estratégica clara.</p>
+                    <p>Soy Máster en Sistemas de Información y Big Data por la Escuela Politécnica Nacional. Mi formación complementaria incluye ITIL 4, COBIT 2019, ISO 20000, DevOps, Six Sigma y Scrum.</p>
+                    <div class="bio-credenciales">
+                        <span class="bio-tag">IT Strategy</span>
+                        <span class="bio-tag">Digital Transformation</span>
+                        <span class="bio-tag">AI Governance</span>
+                        <span class="bio-tag">Cloud & FinOps</span>
+                        <span class="bio-tag">IT Operations</span>
+                        <span class="bio-tag">Cybersecurity</span>
+                    </div>
+                    <div class="bio-sectores">
+                        <div class="bio-sectores-titulo">Sectores de experiencia</div>
+                        <p>Seguros · Banca multilateral · Agroindustria · Floricultura · Fintech · Retail</p>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <div class="enterprise-sep"></div>
 
         <div class="bloque-banner">
             <div class="bloque-left"><h2 class="bloque-title">Pilares</h2></div>
@@ -186,6 +236,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="enterprise-sep"></div>
 
         <div class="seccion-inferior">
             <div class="inferior-item">
