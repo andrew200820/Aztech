@@ -144,7 +144,7 @@ footer {
    7. PAGE: INDEX (GATEWAY)
    ========================================= */
 html.page-index { height: 100%; overflow: hidden; }
-html.page-index body { height: 100%; overflow: hidden; }
+html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direction: column; }
 
 .split-container { display: flex; flex: 1; width: 100vw; position: relative; }
 
@@ -177,6 +177,30 @@ html.page-index body { height: 100%; overflow: hidden; }
 .footer-index { background-color: var(--blanco); color: var(--azul-aztech); padding: 15px 20px; text-align: center; font-family: 'Roboto Mono', monospace; font-size: 0.8rem; z-index: 20; border-top: 1px solid rgba(0,0,0,0.05); }
 .footer-index a { color: var(--azul-aztech); text-decoration: none; font-weight: 700; margin: 0 10px; transition: opacity 0.3s; }
 .footer-index a:hover { opacity: 0.7; }
+
+/* New gateway layout (single-page index) */
+.gateway-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px 20px;
+    background-color: var(--azul-aztech);
+}
+.gateway-logo { display: inline-block; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.gateway-logo:hover { transform: scale(1.08); }
+.gateway-container .icon-img { width: 160px; padding: 18px; border-radius: 50%; box-shadow: 0 20px 50px rgba(0,0,0,0.35); border: 8px solid rgba(255,255,255,0.1); background-color: var(--blanco); }
+.gateway-title { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; color: var(--blanco); letter-spacing: 2px; text-align: center; margin-top: 8px; }
+.gateway-subtitle { font-family: 'Roboto Mono', monospace; font-size: clamp(0.9rem, 1.8vw, 1.15rem); color: rgba(255,255,255,0.85); text-align: center; }
+.gateway-links { display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap; justify-content: center; }
+.gateway-btn { display: inline-block; padding: 14px 32px; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600; text-decoration: none; transition: transform 0.25s, box-shadow 0.25s, background-color 0.25s; }
+.gateway-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+.gateway-btn-primary { background-color: var(--amarillo-aztech); color: var(--azul-aztech); }
+.gateway-btn-primary:hover { background-color: #f5be55; }
+.gateway-btn-secondary { background-color: transparent; color: var(--blanco); border: 2px solid rgba(255,255,255,0.5); }
+.gateway-btn-secondary:hover { border-color: var(--blanco); background-color: rgba(255,255,255,0.1); }
 
 /* =========================================
    8. PAGE: HOME (AZ-HOME)
@@ -274,6 +298,27 @@ html.page-index body { height: 100%; overflow: hidden; }
 .servicios-detalle .detalle-caja-gris p { color: var(--azul-aztech); font-size: 0.95rem; line-height: 1.5; margin-bottom: 15px; }
 .servicios-detalle .card-title { font-size: 1.8rem; }
 .servicios-detalle .card-subtitle { font-size: 1.1rem; font-weight: 700; }
+
+/* 3-package layout modifier */
+.servicios-detalle .detalle-grid.paquetes-3 { gap: 40px; max-width: 1200px; }
+.servicios-detalle .detalle-grid.paquetes-3 .detalle-card { width: calc(33.333% - 27px); min-width: 280px; }
+.servicios-detalle .detalle-grid.paquetes-3 .detalle-caja-gris { text-align: left; }
+
+/* Card meta (pricing / duration line) */
+.card-meta { font-size: 0.88rem; color: var(--azul-aztech); font-weight: 400; margin-top: 12px; padding: 10px 16px; background-color: rgba(27,75,155,0.06); border-radius: 6px; line-height: 1.5; }
+.card-meta strong { font-weight: 700; }
+
+/* Servicios derivados (upsell section) */
+.servicios-derivados { width: 100%; max-width: 1200px; margin: 0 auto; padding: 50px 5% 60px; }
+.derivados-header { text-align: center; margin-bottom: 36px; }
+.derivados-titulo { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 700; color: var(--azul-aztech); margin-bottom: 10px; }
+.derivados-subtitulo { font-size: 1rem; color: #555; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+.derivados-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.derivado-item { background-color: var(--gris-caja); border-radius: 10px; padding: 28px 24px; display: flex; flex-direction: column; gap: 8px; transition: transform 0.25s, box-shadow 0.25s; }
+.derivado-item:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.derivado-tag { display: inline-block; background-color: var(--amarillo-aztech); color: var(--azul-aztech); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; align-self: flex-start; }
+.derivado-item strong { font-size: 1.05rem; color: var(--azul-aztech); }
+.derivado-item p, .derivado-item span:not(.derivado-tag) { font-size: 0.92rem; color: #444; line-height: 1.5; }
 
 .banner-final-business { background-color: var(--amarillo-aztech); padding: 25px 5%; text-align: center; width: 100%; margin-bottom: 40px; }
 .banner-final-business h3 { color: var(--azul-aztech); font-size: clamp(1.1rem, 2.5vw, 1.6rem); font-weight: 700; line-height: 1.4; }
@@ -581,8 +626,11 @@ html.page-index body { height: 100%; overflow: hidden; }
     .paso-desc { max-height: 1000px; opacity: 1; margin-top: 10px; }
     .servicios-detalle .detalle-grid { flex-direction: column; align-items: center; }
     .servicios-detalle .detalle-card { width: 100%; min-width: 100%; }
+    .servicios-detalle .detalle-grid.paquetes-3 .detalle-card { width: 100%; min-width: 100%; }
+    .servicios-detalle .detalle-grid.paquetes-3 .detalle-caja-gris { max-height: 1000px; opacity: 1; padding: 25px 20px; }
     .detalle-header { justify-content: center; }
     .servicios-detalle .titulo-detalle { font-size: 1.8rem; text-align: center; padding: 0 10px; }
+    .derivados-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
 
     /* Enterprise */
     .bloque-banner { flex-direction: column; text-align: center; }
@@ -621,6 +669,11 @@ html.page-index body { height: 100%; overflow: hidden; }
     .split-left:hover, .split-right:hover { flex: 1; }
     .footer-index { font-size: 0.65rem; padding: 12px 5px; }
     .footer-index a { margin: 0 5px; }
+
+    /* New gateway */
+    .gateway-container .icon-img { width: 120px; padding: 14px; border-width: 6px; }
+    .gateway-links { flex-direction: column; align-items: center; gap: 12px; }
+    .gateway-btn { width: 260px; text-align: center; }
 }
 
 /* =========================================
@@ -637,6 +690,13 @@ html.page-index body { height: 100%; overflow: hidden; }
     .split-title { font-size: 1.9rem; }
     .split-desc { font-size: 0.78rem; }
     .icon-img { width: 85px; padding: 9px; border-width: 4px; }
+
+    /* New gateway mobile */
+    .gateway-container .icon-img { width: 100px; padding: 12px; border-width: 5px; }
+    .gateway-btn { width: 100%; max-width: 280px; padding: 12px 24px; font-size: 0.92rem; }
+    .servicios-derivados { padding: 40px 4% 50px; }
+    .derivados-titulo { font-size: 1.2rem; }
+    .derivado-item { padding: 22px 18px; }
 
     /* Home */
     .hero-home { height: 240px; }
