@@ -1170,3 +1170,14 @@ html.page-index body { height: 100%; overflow: hidden; display: flex; flex-direc
     .jc-title { font-size: 1.2rem; }
     .jc-desc { font-size: 0.9rem; }
 }
+
+/* =========================================
+   DIAGNÓSTICO DE PROTECCIÓN DE DATOS: accesos
+   ========================================= */
+.banda-diagnostico { background-color: var(--azul-aztech); color: var(--blanco); padding: 34px 5%; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.banda-diagnostico h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 4px; }
+.banda-diagnostico p { opacity: 0.85; }
+.banda-diagnostico-btn { background-color: var(--amarillo-aztech); color: var(--azul-aztech); font-weight: 600; text-decoration: none; padding: 14px 28px; border-radius: 999px; white-space: nowrap; transition: transform 0.2s; }
+.banda-diagnostico-btn:hover { transform: translateY(-2px); }
+.gateway-diagnostico { display: inline-block; margin-top: 28px; color: var(--blanco); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.gateway-diagnostico:hover { color: var(--amarillo-aztech); }
