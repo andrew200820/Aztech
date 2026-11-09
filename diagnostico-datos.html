@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico de protección de datos | Aztech Enterprise</title>
+    <meta name="description" content="Revisa en 5 minutos si tu negocio cumple la Ley Orgánica de Protección de Datos Personales de Ecuador y qué te falta.">
+    <link rel="icon" type="image/jpeg" href="assets/images/solo-icono.jpg">
+    <link rel="apple-touch-icon" href="assets/images/solo-icono.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+      /* Diagnóstico LOPDP: estilos acotados a .diag para no tocar el resto del sitio */
+      .diag{--ink:#1d2433;--ink2:#5b6475;--line:#d9dee4;--blue:var(--azul-aztech,#1b4b9b);--blue-soft:#e4ebf6;--risk:#c2410c;--mid:#b7791f;--ok:#2f7d4f;
+        background:var(--gris-fondo,#f4f7f9);color:var(--ink);font-family:'Poppins',sans-serif;font-size:16px;line-height:1.6;flex:1}
+      .diag button{font:inherit;color:inherit;cursor:pointer}
+      .diag :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+      .diag .hidden{display:none !important}
+      .diag-shell{max-width:1080px;margin:0 auto;padding:56px 28px 90px;display:grid;grid-template-columns:250px 1fr;gap:72px}
+      .diag-shell.solo{grid-template-columns:1fr;max-width:760px}
+
+      .diag .ficha{position:sticky;top:140px;align-self:start;font-size:13.5px}
+      .diag .ficha h2{font-size:15px;font-weight:600;margin:0 0 2px;color:var(--ink)}
+      .diag .ficha .sub{color:var(--ink2);margin:0 0 16px}
+      .diag .ficha ul{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+      .diag .ficha li{padding:6px 0 6px 14px;margin-left:-2px;border-left:2px solid transparent;color:#a3acb9;display:flex;justify-content:space-between;gap:10px}
+      .diag .ficha li.done{color:var(--ink)}
+      .diag .ficha li.now{border-left-color:var(--amarillo-aztech,#f0b342);color:var(--blue);font-weight:600}
+      .diag .mark{font-weight:700;flex:none}
+      .diag .m-ok{color:var(--ok)} .diag .m-par{color:var(--mid)} .diag .m-no{color:var(--risk)} .diag .m-ns{color:var(--ink2)}
+      .diag .ctx{color:var(--ink2);text-align:right;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+      .diag .intro{max-width:660px;padding-top:4vh}
+      .diag .intro h1{font-size:clamp(30px,4.8vw,48px);line-height:1.12;letter-spacing:-.02em;font-weight:700;margin:0 0 22px;color:var(--blue)}
+      .diag .intro p{font-size:18px;color:var(--ink2);max-width:58ch;margin:0 0 30px}
+      .diag .intro p strong{color:var(--ink);font-weight:600}
+      .diag .go{background:var(--blue);color:#fff;border:0;border-radius:999px;padding:15px 28px;font-weight:600;font-size:16px;transition:transform .15s}
+      .diag .go:hover{transform:translateY(-1px)}
+      .diag .go:disabled{opacity:.6;cursor:wait;transform:none}
+      .diag .fineprint,.diag .intro .fineprint{font-size:13px;color:var(--ink2);margin:26px 0 0;max-width:62ch}
+
+      .diag .stage{padding-top:2vh;max-width:640px}
+      .diag .count{font-size:14px;color:var(--ink2);margin-bottom:16px}
+      .diag .track{height:3px;background:var(--line);border-radius:3px;margin-bottom:38px;overflow:hidden}
+      .diag .track i{display:block;height:100%;background:var(--blue);transition:width .4s ease}
+      .diag .q{transition:opacity .22s ease,transform .22s ease}
+      .diag .q.out{opacity:0;transform:translateY(-10px)}
+      .diag .q.in{opacity:0;transform:translateY(12px)}
+      .diag .q h1{font-size:clamp(23px,3.1vw,31px);line-height:1.25;letter-spacing:-.01em;font-weight:600;margin:0 0 10px;color:var(--ink)}
+      .diag .q .help{color:var(--ink2);margin:0 0 28px;max-width:56ch}
+      .diag .opts{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+      .diag .opt{display:flex;align-items:center;gap:16px;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:16px 6px;font-size:17px;transition:background .15s,padding .15s}
+      .diag .opt:hover{background:rgba(27,75,155,.05);padding-left:12px}
+      .diag .opt kbd{font-family:inherit;font-size:12px;color:var(--ink2);border:1px solid var(--line);border-radius:5px;min-width:24px;text-align:center;padding:1px 6px;flex:none}
+      .diag .opt.sel{background:var(--blue-soft);color:var(--blue);font-weight:600;padding-left:12px}
+      .diag .opt.sel kbd{border-color:var(--blue);color:var(--blue)}
+      .diag .prev,.diag .again{background:none;border:0;color:var(--ink2);padding:22px 0 0;font-size:15px}
+      .diag .prev:hover,.diag .again:hover{color:var(--ink)}
+
+      .diag .res{max-width:700px;padding-top:2vh}
+      .diag .res h1{font-size:clamp(28px,4.2vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:700;margin:0 0 16px;color:var(--blue)}
+      .diag .verdict{font-size:18px;color:var(--ink2);max-width:58ch;margin:0}
+      .diag .gauge{position:relative;margin:64px 0 12px}
+      .diag .zones{display:grid;grid-template-columns:50fr 30fr 20fr;gap:4px;height:14px}
+      .diag .zones span{border-radius:3px}
+      .diag .zones span:nth-child(1){background:#f3d3c4}
+      .diag .zones span:nth-child(2){background:#f6e3b8}
+      .diag .zones span:nth-child(3){background:#cde6d6}
+      .diag .pin{position:absolute;top:-36px;transform:translateX(-50%);transition:left 1s cubic-bezier(.2,.8,.2,1);text-align:center}
+      .diag .pin b{display:block;font-size:21px;font-weight:700;line-height:1}
+      .diag .pin::after{content:"";display:block;width:2px;height:22px;background:var(--ink);margin:6px auto 0}
+      .diag .zlabels{display:grid;grid-template-columns:50fr 30fr 20fr;gap:4px;font-size:13px;color:var(--ink2);margin-bottom:44px}
+      .diag .fine{border-left:3px solid var(--amarillo-aztech,#f0b342);padding:4px 0 4px 18px;margin:0 0 52px}
+      .diag .fine p{margin:0}
+      .diag .fine .big{font-size:23px;font-weight:600}
+      .diag .fine .note{font-size:14px;color:var(--ink2);margin-top:6px}
+      .diag .res h2{font-size:23px;font-weight:600;margin:0 0 4px;color:var(--ink)}
+      .diag .lead2{color:var(--ink2);margin:0 0 20px}
+      .diag .gaps{list-style:none;margin:0 0 52px;padding:0}
+      .diag .gaps li{padding:18px 0 18px 20px;border-bottom:1px solid var(--line);position:relative}
+      .diag .gaps li::before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:4px;border-radius:2px}
+      .diag .gaps li.no::before{background:var(--risk)} .diag .gaps li.par::before{background:var(--mid)} .diag .gaps li.ns::before{background:#a3acb9}
+      .diag .gaps h3{font-size:17px;font-weight:600;margin:0 0 4px;color:var(--ink)}
+      .diag .gaps h3 small{font-size:13.5px;font-weight:400;color:var(--ink2);margin-left:8px}
+      .diag .gaps p{margin:0;color:var(--ink2);max-width:60ch}
+
+      .diag .offer{background:var(--blue);color:#fff;border-radius:22px;padding:36px 34px}
+      .diag .offer h2{color:#fff;font-size:25px;margin:0 0 12px}
+      .diag .offer p{color:#d6e0f2;margin:0 0 14px;max-width:58ch}
+      .diag .offer .go{background:var(--amarillo-aztech,#f0b342);color:#1d2433;margin-top:6px}
+      .diag .lead{margin-top:22px}
+      .diag .lead .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+      .diag .lead label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:#d6e0f2}
+      .diag .lead input[type=text],.diag .lead input[type=email],.diag .lead input[type=tel]{font:inherit;font-size:16px;padding:12px 14px;border-radius:10px;border:1.5px solid transparent;background:#fff;color:var(--ink)}
+      .diag .lead input.bad{border-color:#fca5a5}
+      .diag .consent{flex-direction:row !important;align-items:flex-start;gap:10px !important;margin:6px 0 4px;line-height:1.5}
+      .diag .consent input{margin-top:4px;width:18px;height:18px;flex:none}
+      .diag .consent a{color:#fff;text-decoration:underline}
+      .diag .err{color:#fecaca;font-size:14px;min-height:1.4em;margin:6px 0 8px}
+      .diag .sent h3{color:#fff;font-size:20px;margin:18px 0 6px}
+
+      @media (max-width:860px){
+        .diag-shell{grid-template-columns:1fr;gap:0;padding:32px 20px 70px}
+        .diag .ficha{display:none}
+        .diag .opt kbd{display:none}
+        .diag .offer{padding:28px 22px}
+        .diag .lead .row{grid-template-columns:1fr}
+      }
+      @media (prefers-reduced-motion:reduce){.diag *{transition:none !important}}
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html"><img src="assets/images/logo-principal.jpg" alt="Aztech" class="nav-logo-img"></a>
+        <nav class="nav-links">
+            <a href="enterprise.html">Nosotros</a>
+            <div class="dropdown">
+                <a href="business.html">Servicios ▾</a>
+                <div class="dropdown-content">
+                    <a href="business.html#diagnostico">Diagnóstico IT Ejecutivo</a>
+                    <a href="business.html#ai-readiness">AI Readiness Assessment</a>
+                    <a href="business.html#advisory">Advisory Estratégico</a>
+                    <a href="casos-de-exito.html">Casos de Éxito</a>
+                </div>
+            </div>
+            <a href="congreso-ia.html">Congreso IA</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <main class="diag" id="diag">
+      <div class="diag-shell solo" id="shell">
+
+        <aside class="ficha hidden" id="ficha" aria-label="Tus respuestas">
+          <h2>Ficha de tu negocio</h2>
+          <p class="sub">Se completa mientras respondes.</p>
+          <ul id="fichaList"></ul>
+        </aside>
+
+        <div>
+          <section class="intro" id="intro">
+            <h1>¿Tu negocio podría recibir una multa por cómo maneja los datos de sus clientes?</h1>
+            <p>Desde 2023 la ley de protección de datos permite multas de <strong>hasta el 1% de lo que factura una empresa</strong>, y la Superintendencia ya empezó a sancionar. Responde 15 preguntas y en cinco minutos sabrás dónde estás parado y qué te falta.</p>
+            <button class="go" id="start">Empezar el diagnóstico</button>
+            <p class="fineprint">Tus respuestas se quedan en tu navegador. Solo nos llegan si al final decides dejarnos tus datos. Es una guía orientativa, no asesoría legal.</p>
+          </section>
+
+          <section class="stage hidden" id="stage">
+            <div class="count" id="count"></div>
+            <div class="track"><i id="bar"></i></div>
+            <div class="q" id="q">
+              <h1 id="qText"></h1>
+              <p class="help" id="qHelp"></p>
+              <div class="opts" id="opts" role="radiogroup"></div>
+            </div>
+            <button class="prev" id="prev">Anterior</button>
+          </section>
+
+          <section class="res hidden" id="res" aria-live="polite">
+            <h1 id="resTitle"></h1>
+            <p class="verdict" id="verdict"></p>
+
+            <div class="gauge">
+              <div class="pin" id="pin" style="left:4%"><b id="pct">0%</b></div>
+              <div class="zones"><span></span><span></span><span></span></div>
+            </div>
+            <div class="zlabels"><span>Riesgo alto</span><span>Riesgo medio</span><span>Riesgo bajo</span></div>
+
+            <div class="fine" id="fine"></div>
+
+            <h2 id="gapsTitle">Lo que te falta</h2>
+            <p class="lead2">De lo más urgente a lo menos urgente.</p>
+            <ul class="gaps" id="gaps"></ul>
+
+            <div class="offer" id="offer">
+              <h2>Ponte en regla sin contratar un estudio jurídico</h2>
+              <p>Te ayudamos a preparar los documentos que te faltan, adaptados a tu negocio: política de privacidad, cláusulas de consentimiento, registro de tratamientos, contratos con proveedores y protocolo de filtraciones.</p>
+              <p>Déjanos tus datos y te contactamos para revisar tu resultado.</p>
+
+              <form class="lead" id="lead" novalidate>
+                <div class="row">
+                  <label>Nombre<input type="text" id="l-nombre" name="nombre" autocomplete="name" required></label>
+                  <label>Empresa<input type="text" id="l-empresa" name="empresa" autocomplete="organization"></label>
+                </div>
+                <div class="row">
+                  <label>Correo<input type="email" id="l-email" name="email" autocomplete="email" required></label>
+                  <label>WhatsApp (opcional)<input type="tel" id="l-tel" name="telefono" autocomplete="tel"></label>
+                </div>
+                <label class="consent">
+                  <input type="checkbox" id="l-ok" required>
+                  <span>Acepto que Aztech Enterprise use estos datos y el resultado de mi diagnóstico solo para contactarme sobre este servicio, según su <a href="politicas-de-privacidad.html" target="_blank" rel="noopener">política de privacidad</a>.</span>
+                </label>
+                <p class="err" id="l-err" role="alert"></p>
+                <button class="go" type="submit" id="l-send">Quiero que me contacten</button>
+              </form>
+              <div class="sent hidden" id="sent">
+                <h3>Recibimos tus datos.</h3>
+                <p>Te escribiremos en menos de 24 horas para revisar tu resultado. Si prefieres, escríbenos a info@aztech-ec.com.</p>
+              </div>
+            </div>
+
+            <button class="again" id="again">Hacer el diagnóstico otra vez</button>
+            <p class="fineprint">El diagnóstico se basa en las obligaciones generales de la Ley Orgánica de Protección de Datos Personales y su reglamento. La multa es una referencia sobre el rango legal de 0,1% a 1% del volumen de negocio; la sanción real depende del tipo de infracción y de los criterios de la autoridad. No constituye asesoría legal.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script>
+const QUESTIONS = [
+  { id:"sector", kind:"context", short:"Sector", text:"¿A qué se dedica tu negocio?",
+    help:"Algunos sectores manejan datos más delicados que otros.",
+    options:["Salud: consultorio, clínica o laboratorio","Educación: colegio, academia o centro de formación","Comercio o tienda en línea","Servicios profesionales","Inmobiliaria o construcción","Gimnasio, spa o bienestar","Cobranzas o call center","Otro"],
+    chip:["Salud","Educación","Comercio","Servicios","Inmobiliaria","Bienestar","Cobranzas","Otro"] },
+  { id:"revenue", kind:"context", short:"Facturación", text:"¿Cuánto factura tu negocio al año, más o menos?",
+    help:"Solo lo usamos para estimar la multa. No se guarda.",
+    options:["Menos de USD 100.000","Entre USD 100.000 y 500.000","Entre USD 500.000 y 1 millón","Entre USD 1 y 5 millones","Más de USD 5 millones"],
+    chip:["< 100 mil","100–500 mil","500 mil–1 M","1–5 M","> 5 M"],
+    values:[50000,300000,750000,3000000,5000000] },
+  { id:"sensitive", kind:"context", short:"Datos sensibles", text:"¿Manejas datos sensibles?",
+    help:"Por ejemplo historias clínicas, huellas o fotos para control de acceso, datos de menores de edad o información financiera de tus clientes.",
+    options:["Sí","No","No estoy seguro"], chip:["Sí","No","No sabe"] },
+
+  { id:"rat", weight:3, short:"Registro de tratamientos",
+    text:"¿Tienes por escrito qué datos recoges, para qué los usas, con quién los compartes y cuánto tiempo los guardas?",
+    help:"La ley lo llama Registro de Actividades de Tratamiento.",
+    gap:"Registro de tratamientos",
+    fix:"Es la base de todo: sin este inventario no puedes demostrar que cumples. Anota qué datos recoges, para qué, con quién los compartes y cuánto tiempo los guardas." },
+  { id:"policy", weight:2, short:"Política de privacidad",
+    text:"¿Tienes una política de privacidad publicada donde recoges datos?",
+    help:"En tu web, en el local o en tus formularios.",
+    gap:"Política de privacidad",
+    fix:"Tiene que explicar, en palabras simples, qué datos recoges, para qué y cómo una persona puede pedir verlos o borrarlos. Debe estar visible justo donde recoges los datos." },
+  { id:"consent", weight:3, short:"Consentimiento",
+    text:"¿Pides autorización antes de recoger datos y guardas la prueba de que la persona aceptó?",
+    help:"Una casilla marcada en un formulario, una cláusula firmada o una aceptación guardada por WhatsApp.",
+    gap:"Consentimiento con prueba",
+    fix:"Ante una denuncia, te toca demostrar que la persona aceptó. Pon cláusulas de consentimiento en formularios y contratos, y guarda la evidencia." },
+  { id:"purpose", weight:2, short:"Uso según finalidad",
+    text:"¿Usas los datos solo para lo que le dijiste a la persona?",
+    help:"Por ejemplo, no le mandas publicidad a quien te dio su correo solo para la factura.",
+    gap:"Uso de los datos para otros fines",
+    fix:"Usar datos para algo que no informaste, como marketing sin permiso, es de las faltas más comunes. Pide un consentimiento aparte para cada uso." },
+  { id:"rights", weight:2, short:"Solicitudes de clientes",
+    text:"Si un cliente te pide ver, corregir o borrar sus datos, ¿tienes cómo atenderlo?",
+    help:"Un canal definido, un responsable y un plazo para responder.",
+    gap:"Atención de solicitudes de los clientes",
+    fix:"La ley obliga a responder estas solicitudes dentro de un plazo. Define un correo o formulario, una persona responsable y una respuesta tipo." },
+  { id:"vendors", weight:2, short:"Contratos con proveedores",
+    text:"¿Tus contratos con proveedores que ven datos de tus clientes incluyen cláusulas de protección de datos?",
+    help:"Contador externo, sistema en la nube, call center, agencia de marketing.",
+    gap:"Contratos con proveedores",
+    fix:"Cada proveedor que toca tus datos debe firmar un acuerdo que diga qué puede hacer con ellos, por cuánto tiempo y cómo los protege." },
+  { id:"access", weight:2, short:"Control de accesos",
+    text:"¿Solo acceden a los datos de clientes las personas que los necesitan, cada una con su propio usuario?",
+    gap:"Control de accesos",
+    fix:"Con usuarios compartidos no hay forma de saber quién hizo qué. Crea un usuario por persona y da acceso solo a lo que cada una necesita." },
+  { id:"security", weight:2, short:"Seguridad básica",
+    text:"¿Tienes respaldos, equipos actualizados y protección básica como antivirus o cifrado en las laptops?",
+    gap:"Seguridad básica",
+    fix:"La ley exige medidas de seguridad acordes al riesgo. Lo mínimo: respaldos que hayas probado, equipos al día y laptops cifradas." },
+  { id:"shadow", weight:2, inverse:true, short:"WhatsApp, Excel y USB",
+    text:"¿Los datos de clientes circulan por WhatsApp personal, archivos de Excel compartidos o memorias USB?",
+    help:"Aquí responder «Sí» quiere decir que eso pasa en tu negocio.",
+    gap:"Datos sueltos en WhatsApp, Excel o USB",
+    fix:"Es la causa más común de filtraciones en negocios pequeños. Define canales oficiales y elimina las copias que andan sueltas." },
+  { id:"breach", weight:3, short:"Plan ante filtraciones",
+    text:"Si mañana se filtran los datos de tus clientes, ¿sabes qué hacer y a quién avisar?",
+    help:"La ley da 5 días para avisar a la Superintendencia y 3 días para avisar a los afectados.",
+    options:["Sí, tenemos un protocolo escrito","Más o menos: sabríamos a quién llamar, pero no está escrito","No"],
+    scores:[1,0.5,0],
+    gap:"Plan ante filtraciones",
+    fix:"No avisar a tiempo es una falta grave. Escribe un protocolo: quién detecta el problema, quién decide, qué se notifica y en qué plazo." },
+  { id:"training", weight:1, short:"Capacitación",
+    text:"¿Tu equipo recibió capacitación sobre protección de datos en el último año?",
+    gap:"Capacitación del equipo",
+    fix:"La mayoría de incidentes son errores humanos. Una capacitación corta, con constancia, también te sirve para demostrar diligencia." },
+  { id:"dpo", weight:1, short:"Delegado de datos",
+    text:"¿Cómo está tu negocio con el Delegado de Protección de Datos?",
+    help:"No todas las empresas lo necesitan, pero las que sí deben tenerlo registrado.",
+    options:["Ya lo tenemos registrado","Verificamos que no lo necesitamos","Sé que lo necesitamos, pero no lo tenemos","No sé si lo necesitamos"],
+    scores:[1,1,0,0], unknown:3,
+    gap:"Delegado de Protección de Datos",
+    fix:"Lo necesitan, entre otras, las empresas que tratan datos sensibles de forma habitual o a gran escala. Si aplica y no está registrado, es una infracción." }
+];
+const STD = ["Sí","Parcialmente","No","No sé"];
+
+let idx = 0;
+const answers = {};
+const $ = id => document.getElementById(id);
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let locked = false;
+
+function opts(q){ return q.options || STD; }
+
+function pts(q){
+  if(q.scores) return q.scores[answers[q.id]];
+  const l = STD[answers[q.id]];
+  if(q.inverse) return l==="Sí"?0 : l==="No"?1 : l==="Parcialmente"?0.5 : 0;
+  return {"Sí":1,"Parcialmente":0.5,"No":0,"No sé":0}[l];
+}
+
+function fichaRender(){
+  $("fichaList").innerHTML = QUESTIONS.map((q,i)=>{
+    const a = answers[q.id];
+    let right = "";
+    if(a!==undefined){
+      if(q.kind) right = `<span class="ctx">${q.chip[a]}</span>`;
+      else {
+        const l = q.scores ? (q.unknown===a ? "No sé" : opts(q)[a]) : STD[a], p = pts(q);
+        const cls = l==="No sé" ? "m-ns" : p===1 ? "m-ok" : p===0 ? "m-no" : "m-par";
+        const sym = l==="No sé" ? "?" : p===1 ? "✓" : p===0 ? "✕" : "~";
+        right = `<span class="mark ${cls}" aria-label="${l}">${sym}</span>`;
+      }
+    }
+    const cls = i===idx && !$("stage").classList.contains("hidden") ? "now" : a!==undefined ? "done" : "";
+    return `<li class="${cls}"><span>${q.short}</span>${right}</li>`;
+  }).join("");
+}
+
+function paint(){
+  const q = QUESTIONS[idx];
+  $("count").textContent = `${idx+1} de ${QUESTIONS.length}`;
+  $("bar").style.width = (idx/QUESTIONS.length*100)+"%";
+  $("qText").textContent = q.text;
+  $("qHelp").textContent = q.help || "";
+  $("qHelp").style.display = q.help ? "block" : "none";
+  $("opts").innerHTML = "";
+  opts(q).forEach((label,i)=>{
+    const b = document.createElement("button");
+    b.className = "opt" + (answers[q.id]===i ? " sel" : "");
+    b.setAttribute("role","radio");
+    b.setAttribute("aria-checked", answers[q.id]===i);
+    b.innerHTML = `<kbd>${i+1}</kbd><span>${label}</span>`;
+    b.onclick = ()=>choose(i);
+    $("opts").appendChild(b);
+  });
+  $("prev").style.visibility = idx===0 ? "hidden" : "visible";
+  fichaRender();
+}
+
+function go(to){
+  const el = $("q");
+  if(reduce){ idx = to; paint(); return; }
+  el.classList.add("out");
+  setTimeout(()=>{
+    idx = to; paint();
+    el.classList.remove("out"); el.classList.add("in");
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.remove("in")));
+  },200);
+}
+
+function choose(i){
+  if(locked) return;
+  const q = QUESTIONS[idx];
+  answers[q.id] = i;
+  [...$("opts").children].forEach((b,j)=>{ b.classList.toggle("sel", j===i); b.setAttribute("aria-checked", j===i); });
+  fichaRender();
+  locked = true;
+  setTimeout(()=>{
+    locked = false;
+    if(idx < QUESTIONS.length-1) go(idx+1); else showResults();
+  }, reduce ? 120 : 380);
+}
+
+function money(n){ return "USD " + Math.round(n).toLocaleString("es-EC"); }
+
+var showResults = function(){
+  let got=0, max=0; const gaps=[];
+  QUESTIONS.filter(q=>q.weight).forEach(q=>{
+    const p = pts(q), l = q.scores ? (q.unknown===answers[q.id] ? "No sé" : "") : STD[answers[q.id]];
+    got += p*q.weight; max += q.weight;
+    if(p<1) gaps.push({q, st: l==="No sé" ? "ns" : p===0 ? "no" : "par", prio:(1-p)*q.weight});
+  });
+  const pct = Math.round(got/max*100);
+  const sensitive = answers.sensitive===0;
+  let level = pct>=80 ? "bajo" : pct>=50 ? "medio" : "alto";
+  if(sensitive && level==="medio") level = "alto";
+  else if(sensitive && level==="bajo" && pct<90) level = "medio";
+
+  const titles = {
+    alto:"Hoy te costaría demostrar que cumples la ley.",
+    medio:"Tienes una base, pero una denuncia encontraría huecos.",
+    bajo:"Vas bien. Te quedan detalles por cerrar."
+  };
+  const verdicts = {
+    alto:`Cumples ${pct}% de lo que revisamos. Si llegara una denuncia o una filtración, no tendrías cómo respaldarte.`,
+    medio:`Cumples ${pct}% de lo que revisamos. Lo básico está, pero faltan piezas que la autoridad pediría primero.`,
+    bajo:`Cumples ${pct}% de lo que revisamos. Revisa los pendientes para quedar en regla.`
+  };
+  $("resTitle").textContent = titles[level];
+  $("verdict").textContent = verdicts[level] + (sensitive ? " Como manejas datos sensibles, la exigencia sobre tu negocio es mayor." : "");
+
+  $("pct").textContent = "0%";
+  $("pin").style.left = "0%";
+  const rev = QUESTIONS[1].values[answers.revenue];
+  const plus = answers.revenue===4 ? " o más" : "";
+  $("fine").innerHTML = gaps.length
+    ? `<p>Con tu facturación, una multa podría ir de</p><p class="big">${money(rev*0.001)} a ${money(rev*0.01)}${plus}</p><p class="note">Sin contar lo que cuesta atender una filtración ni el golpe a tu reputación.</p>`
+    : `<p class="big">No encontramos brechas.</p><p class="note">Aun así, vale la pena que un especialista revise tus documentos.</p>`;
+
+  gaps.sort((a,b)=>b.prio-a.prio);
+  const st = {no:"No lo tienes", par:"Lo tienes a medias", ns:"No sabes si lo tienes"};
+  $("gapsTitle").textContent = gaps.length ? `Lo que te falta (${gaps.length})` : "Lo que te falta";
+  $("gaps").innerHTML = gaps.map(g=>`<li class="${g.st}"><h3>${g.q.gap}<small>${g.st==="ns" && g.q.unknown!==undefined ? "No sabes si lo necesitas" : st[g.st]}</small></h3><p>${g.q.fix}</p></li>`).join("");
+
+  $("stage").classList.add("hidden");
+  $("ficha").classList.add("hidden");
+  $("shell").classList.add("solo");
+  $("res").classList.remove("hidden");
+  window.scrollTo(0,0);
+
+  const target = pct;
+  setTimeout(()=>{
+    $("pin").style.left = Math.min(96, Math.max(4, target))+"%";
+    if(reduce){ $("pct").textContent = target+"%"; return; }
+    const t0 = performance.now();
+    (function tick(t){
+      const k = Math.min(1,(t-t0)/1000), e = 1-Math.pow(1-k,3);
+      $("pct").textContent = Math.round(target*e)+"%";
+      if(k<1) requestAnimationFrame(tick);
+    })(t0);
+  }, 250);
+}
+
+$("start").onclick = ()=>{
+  $("intro").classList.add("hidden");
+  $("stage").classList.remove("hidden");
+  $("ficha").classList.remove("hidden");
+  $("shell").classList.remove("solo");
+  paint();
+  $("opts").firstChild.focus({preventScroll:true});
+};
+$("prev").onclick = ()=>{ if(idx>0) go(idx-1); };
+$("again").onclick = ()=>{
+  idx = 0; for(const k in answers) delete answers[k];
+  $("res").classList.add("hidden");
+  $("intro").classList.remove("hidden");
+  window.scrollTo(0,0);
+};
+document.addEventListener("keydown", e=>{
+  if($("stage").classList.contains("hidden")) return;
+  const n = parseInt(e.key,10);
+  if(n>=1 && n<=opts(QUESTIONS[idx]).length) choose(n-1);
+  if(e.key==="Backspace" && idx>0){ e.preventDefault(); go(idx-1); }
+});
+/* Formulario de contacto: se envía a Formspree solo con consentimiento */
+let lastResult = null;
+const _show = showResults;
+showResults = function(){ _show(); lastResult = summary(); };
+function summary(){
+  const ctx = id => { const q = QUESTIONS.find(x=>x.id===id); return q.chip[answers[id]]; };
+  const gaps = [...document.querySelectorAll("#gaps li h3")].map(h=>h.childNodes[0].textContent+" ("+h.querySelector("small").textContent+")");
+  return { sector:ctx("sector"), facturacion:ctx("revenue"), datos_sensibles:ctx("sensitive"),
+           cumplimiento:$("verdict").textContent.match(/\d+%/)[0], resultado:$("resTitle").textContent,
+           brechas:gaps.join("; ") };
+}
+$("lead").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const n=$("l-nombre"), m=$("l-email"), ok=$("l-ok"), err=$("l-err");
+  [n,m].forEach(x=>x.classList.remove("bad"));
+  if(n.value.trim().length<2){ n.classList.add("bad"); err.textContent="Escribe tu nombre."; n.focus(); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m.value.trim())){ m.classList.add("bad"); err.textContent="Revisa tu correo."; m.focus(); return; }
+  if(!ok.checked){ err.textContent="Necesitamos tu autorización para contactarte."; ok.focus(); return; }
+  err.textContent=""; $("l-send").disabled=true; $("l-send").textContent="Enviando…";
+  const data = Object.assign({
+    _subject:"Diagnóstico LOPDP: "+(lastResult?lastResult.cumplimiento:"")+" - "+n.value.trim(),
+    origen:"diagnostico-datos", nombre:n.value.trim(), empresa:$("l-empresa").value.trim(),
+    email:m.value.trim(), telefono:$("l-tel").value.trim(), consentimiento:"Sí, "+new Date().toISOString()
+  }, lastResult||{});
+  try{
+    const r = await fetch("https://formspree.io/f/mpqbwjrq",{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/json"},body:JSON.stringify(data)});
+    if(!r.ok) throw new Error(r.status);
+    $("lead").classList.add("hidden"); $("sent").classList.remove("hidden");
+  }catch(_){
+    err.textContent="No pudimos enviar tus datos. Intenta de nuevo o escríbenos a info@aztech-ec.com.";
+    $("l-send").disabled=false; $("l-send").textContent="Quiero que me contacten";
+  }
+});
+
+    </script>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>AZTECH ENTERPRISE</h3>
+                <p>Consultoría ejecutiva de tecnología. Diagnóstico, dirección estratégica y resultados medibles para tu organización.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="business.html#diagnostico">Diagnóstico IT Ejecutivo</a></li>
+                    <li><a href="business.html#ai-readiness">AI Readiness Assessment</a></li>
+                    <li><a href="business.html#advisory">Advisory Estratégico</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compañía</h4>
+                <ul>
+                    <li><a href="enterprise.html">Nosotros</a></li>
+                    <li><a href="#">Casos de Éxito</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Ecuador</p>
+                <p><a href="mailto:info@aztech-ec.com">info@aztech-ec.com</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Aztech Enterprise. Todos los derechos reservados.</div>
+            <div class="footer-links">
+                <a href="#">Términos</a>
+                <a href="politicas-de-privacidad.html">Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <a href="https://wa.link/y37yti" class="whatsapp-flotante" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+</body>
+</html>
